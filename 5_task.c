@@ -2,8 +2,8 @@
 
 /**
  * nop - The opcode nop doesn’t do anything.
- * @stack: 
- * @line_number:
+ * @stack: first member
+ * @line_number: second member
  *
  */
 
