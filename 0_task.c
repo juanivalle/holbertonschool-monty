@@ -9,15 +9,28 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	if (!stack)
-		return;
+	stack_t temp;
+	stack_t new_node;
 
-	if ()
+	new_node = malloc(sizeof(stack_t **stack));
+	new_node->data = line_number;
+	new_node->next = NULL;
+
+	if (**stack == NULL)
 	{
-	printf("L%d: usage: push integer");
-	exit(EXIT_FAILURE);
+		**stack = new_node;
+		printf("L%d: usage: push integer", line_number);
+		exit(EXIT_FAILURE);
 	}
-
+	else
+	{
+		temp = **stack;
+		while (temp->next != NULL)
+		{
+			temp->next = temp;
+		}
+		temp->next = new_node;
+	}
 }
 
 /**
