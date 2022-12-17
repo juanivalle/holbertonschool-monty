@@ -1,56 +1,52 @@
 #include "monty.h"
 
 /**
- * push - add node
- * @stack: head of list
- * @line_number: line number.
- *
+ * push - pushes an element to the stack
+ * @stack: the stack
+ * @line_number: the line number of the push instruction
  */
-
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t temp;
-	stack_t new_node;
+	int n = 0;
+    	stack_t *new;
+    
+    if (!stack)
+    {
+	fprintf(stderr, "L%u: invalid stack\n", line_number);
+	exit(EXIT_FAILURE);
+    }
+    new = malloc(sizeof(*new));
+    if (!new)
+    {
+	fprintf(stderr, "Error: malloc failed\n");
+	exit(EXIT_FAILURE);
+    }
 
-	new_node = malloc(sizeof(stack_t **stack));
-	new_node->data = line_number;
-	new_node->next = NULL;
-
-	if (**stack == NULL)
-	{
-		**stack = new_node;
-		printf("L%d: usage: push integer", line_number);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		temp = **stack;
-		while (temp->next != NULL)
-		{
-			temp->next = temp;
-		}
-		temp->next = new_node;
-	}
+    new->n = n;
+    new->prev = NULL;
+    new->next = *stack;
+    if (*stack)
+	(*stack)->prev = new;
+    *stack = new;
 }
 
 /**
- * pall - print nodes
- * @stack: head of list
- * @line_number: line number.
- *
+ * pall - prints all the values on the stack, starting from the top
+ * @stack: the stack
+ * @line_number: the line number of the pall instruction (unused)
  */
-
 void pall(stack_t **stack, unsigned int line_number)
 {
-	(void)line_number;
+    stack_t *current;
+    (void)line_number;
 
-	stack_t *tmp = (*stack)->next;
+    if (!stack || !*stack)
+	    return;
 
-	while (tmp)
-	{
-		printf("%d\n", tmp->n);
-		tmp = tmp->next;
-	}
-
+    current = *stack;
+    while (current)
+    {
+	    printf("%d\n", current->n);
+	    current = current->next;
+    }
 }
-
