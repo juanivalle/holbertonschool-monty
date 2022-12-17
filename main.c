@@ -25,13 +25,24 @@ int main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 
-	char *line = NULL;
+	char *line = NULL, *token = NULL;
 	size_t len = 0;
 	ssize_t read;
 
+	line = malloc(sizeof(char) * 10000);
+
+	if (!line)
+	{
+		free(line);
+		return (0);
+	}
+	token = strtok(line, DELIMS);
+
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
-		printf("%s", line);
+		free(line);
+		printf("L %s: unknow instruction %s\n", line, token);
+		return (EXIT_SUCCESS);
 	}
 
 	free(line);

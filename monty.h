@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <stddef.h>
 
-#define DELIMS " \n\r\t\a"
+#define DELIMS "\n\r\t\a :;"
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
