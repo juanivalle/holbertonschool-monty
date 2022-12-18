@@ -1,7 +1,5 @@
 #include "monty.h"
 
-stack_t **full_start;
-
 /**
  * main - entry point.
  * @argc: argument count.
@@ -25,7 +23,7 @@ int main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 
-	char *line = NULL; /**token = NULL*/
+	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
 
@@ -36,15 +34,12 @@ int main(int argc, char *argv[])
 		free(line);
 		return (0);
 	}
-/*	token = strtok(line, DELIMS);*/
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		free(line);
-/*		printf("L %s: unknow instruction %s\n", line, token);*/
 		return (EXIT_SUCCESS);
 	}
-
 	free(line);
 	fclose(fp);
 	return (EXIT_SUCCESS);
