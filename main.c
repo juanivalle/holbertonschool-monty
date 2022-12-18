@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 
-	char *line = NULL, *token = NULL;
+	char *line = NULL; /**token = NULL*/
 	size_t len = 0;
 	ssize_t read;
 
@@ -36,12 +36,12 @@ int main(int argc, char *argv[])
 		free(line);
 		return (0);
 	}
-	token = strtok(line, DELIMS);
+/*	token = strtok(line, DELIMS);*/
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		free(line);
-		printf("L %s: unknow instruction %s\n", line, token);
+/*		printf("L %s: unknow instruction %s\n", line, token);*/
 		return (EXIT_SUCCESS);
 	}
 
