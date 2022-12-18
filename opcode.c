@@ -1,24 +1,24 @@
 #include "monty.h"
 
+static instructions_t instruction_s[] = {
+	{"push", push},
+	{"pall", pall},
+	{"pint", pint},
+	{"pop", pop},
+	{"swap", swap},
+	{"add", add},
+	{"nop", NULL},
+	{NULL, NULL},
+};
+
 /**
  * opcode - comparison of the token with the operation functions.
  * @stack:
  * @line_number:
  *
  */
-void (*get_opcode(char *token))(stack_t **stack, unsigned int line_number)
+void get_opcode(char **token, stack_t **stack)
 {
-	instructions_t instruction_s[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"nop", nop},
-		{NULL, NULL}
-	};
-
 	int index = 0;
 
 	while (instruction_s[index].opcode)
@@ -26,7 +26,7 @@ void (*get_opcode(char *token))(stack_t **stack, unsigned int line_number)
 		if (strcmp(token[0], instruction_s[index].opcode) == 0)
 		{
 			if (instruction_s[index].f)
-				instruction_s[index].f(stack_t, line_number);
+				instruction_s[index].f(stack, line_number);
 			break;
 		}
 		index++;
