@@ -2,8 +2,8 @@
 
 /**
  * add - add elements on the stack
- * @stack: 
- * @line_number: 
+ * @stack: the stack
+ * @line_number: the line number of the add instruction
  *
  */
 
