@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * add - add elements on the stack
@@ -17,6 +17,6 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->next->n += (*stack)->next->n;
-	pop(stack, line_number)i;
+	pop(stack, line_number);
 }
 
