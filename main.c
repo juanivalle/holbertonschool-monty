@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 
-	char *line = NULL;
+	char *line = NULL, *token = NULL, *store = NULL;
 	size_t len = 0;
 	ssize_t read;
 
@@ -37,6 +37,19 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
+/*		line_number++;*/
+		token = strtok(line, DELIMS);
+		if (!token)
+			return (EXIT_FAILURE);
+
+		store = malloc(sizeof(char **) * len);
+		if (!store)
+		{
+			fprintf(stderr, "Error: malloc failed");
+			free(line);
+			exit(EXIT_FAILURE);
+		}
+		
 		free(line);
 		return (EXIT_SUCCESS);
 	}

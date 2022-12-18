@@ -6,10 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <unistd.h>
-#include <stddef.h>
+#include <ctype.h>
 
 #define DELIMS "\n\r\t\a :;"
 
@@ -47,6 +47,9 @@ typedef struct instruction_s
 	/* prototypes */
 
 int main(int argc, char* argv[]);
+
+void _opcode(stack_t **stack, unsigned int line_number);
+
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);

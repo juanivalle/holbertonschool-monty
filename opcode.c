@@ -6,26 +6,37 @@
  * @line_number:
  *
  */
-void _opcode(stack_t **stack, unsigned int line_number)
+void (*get_opcode(char *token))(stack_t **stack, unsigned int line_number)
 {
-	_opcode_t _opcode_s[] = {
+	instructions_t instruction_s[] = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-		{"nop", nop}
+		{"nop", nop},
+		{NULL, NULL}
 	};
 
 	int index = 0;
 
-	while (_opcode_s[i].f != NULL)
+	while (instruction_s[index].opcode)
 	{
-		if (strcmp(token, _opcode_s[i].opcode) == 0)
-			return (_opcode_s[i].f);
+		if (strcmp(token[0], instruction_s[index].opcode) == 0)
+		{
+			if (instruction_s[index].f)
+				instruction_s[index].f(stack_t, line_number);
+			break;
+		}
 		index++;
 	}
-	return (NULL);
+
+	if (!(instruction_s[index].opcode))
+	{
+		fprintf(stderr, "L%u: unknown instruction %s\n",
+			line_number, token[0]);
+		exit(EXIT_FAILURE);
+	}
 }
 
