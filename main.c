@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 	FILE *fp = fopen(argv[1], "r");
+
 	if (!fp)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
@@ -48,34 +49,3 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-
-/**
- *
- *
- *
- *
- */
-/*
-char _token(char *line)
-{
-	char *token = NULL, *store = NULL;
-
-	token = strtok(line, DELIMS);
-	if (!token)
-		return (NULL);
-
-	store = malloc(sizeof(char **) * 3);
-	if (!store)
-	{
-		fprintf(stderr, "Error: malloc failed");
-		free(line);
-		exit(EXIT_FAILURE);
-	}
-
-	while (token)
-	{
-		token = strtok(NULL, DELIMS);
-	}
-	return (store);
-}
-*/

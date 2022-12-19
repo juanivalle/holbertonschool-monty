@@ -49,10 +49,7 @@ typedef struct instruction_s
 
 	/* prototypes */
 
-int main(int argc, char* argv[]);
-
-void (*get_opcode(char *opcode))(stack_t **stack, unsigned int line_number);
-char _token(char *line);
+int main(int argc, char *argv[]);
 
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
