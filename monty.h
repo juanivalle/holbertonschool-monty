@@ -51,7 +51,8 @@ typedef struct instruction_s
 
 int main(int argc, char* argv[]);
 
-void get_opcode(char **token, stack_t **stack);
+void (*get_opcode(char *opcode))(stack_t **stack, unsigned int line_number);
+char _token(char *line);
 
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
