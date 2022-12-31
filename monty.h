@@ -1,18 +1,13 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
 
-	/* libraries */
-
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <ctype.h>
 #include <fcntl.h>
-
-#define DELIMS "\n\r\t\a :;"
+#include <ctype.h>
 
 extern unsigned int line_number;
 
@@ -23,7 +18,7 @@ extern unsigned int line_number;
  * @next: points to the next element of the stack (or queue)
  *
  * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct stack_s
 {
@@ -32,13 +27,14 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
  *
  * Description: opcode and its function
- * for stack, queues, LIFO, FIFO
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct instruction_s
 {
@@ -46,17 +42,17 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+stack_t *build_list(stack_t *head);
+void ops(char **tokens, stack_t **stack);
 
-	/* prototypes */
-
-int main(int argc, char *argv[]);
-
-void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int n);
+void pall(stack_t **stack, unsigned int n);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+
+void frees(stack_t **stack);
 
 #endif

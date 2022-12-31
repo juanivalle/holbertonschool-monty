@@ -5,14 +5,14 @@
  * @stack: the stack
  * @line_number: the line number of the pint instruction
  */
-void pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int n)
 {
-	if (!stack || !*stack)
+	if (!stack || !(*stack))
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", n);
 		exit(EXIT_FAILURE);
 	}
 
-	printf("%d\n", (*stack)->n);
+	fprintf(stdout, "%d\n", (*stack)->n);
 }
 

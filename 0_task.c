@@ -5,29 +5,35 @@
  * @stack: the stack
  * @line_number: the line number of the push instruction
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int n)
 {
-	int n = 0;
-	stack_t *new;
+	(void) n;
+	stack_t *new = NULL;
 
 	if (!stack)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	new = malloc(sizeof(*new));
+	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		frees(stack);
 		exit(EXIT_FAILURE);
 	}
 
-	new->n = n;
-	new->prev = NULL;
-	new->next = *stack;
-	if (*stack)
-		(*stack)->prev = new;
-	*stack = new;
+	new->prev = new->next = NULL;
+
+	if (!(*stack))
+		(*stack) = new;
+	else
+	{
+		if (*stack)
+			(*stack)->prev = new;
+		new->next = *stack;
+		*stack = new;
+	}
 }
 
 /**
@@ -35,18 +41,19 @@ void push(stack_t **stack, unsigned int line_number)
  * @stack: the stack
  * @line_number: the line number of the pall instruction (unused)
  */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int n)
 {
-	stack_t *current;
-	(void)line_number;
+	(void) n;
+	stack_t *current, *head;
 
-	if (!stack || !*stack)
+	if (!stack || !(*stack))
 		return;
 
-	current = *stack;
+	current = head = *stack;
+
 	while (current)
 	{
-		printf("%d\n", current->n);
+		fprintf(stdout, "%d\n", current->n);
 		current = current->next;
 	}
 }

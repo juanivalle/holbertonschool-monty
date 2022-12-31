@@ -9,14 +9,15 @@
 
 void add(stack_t **stack, unsigned int line_number)
 {
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	if (!stack || !(*stack) || !((*stack)->next))
 	{
 		fprintf(stderr, "L%u: can't aad, stack too short\n",
 			line_number);
-		free(stack);
+		if (*stack)
+			frees(stack);
 		exit(EXIT_FAILURE);
 	}
-	(*stack)->next->next->n += (*stack)->next->n;
+	(*stack)->next->n = ((*stack)->next->n) + ((*stack)->n);
 	pop(stack, line_number);
 }
 
