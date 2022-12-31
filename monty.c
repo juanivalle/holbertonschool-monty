@@ -12,10 +12,11 @@ static instruction_t operations[] = {
 	};
 
 /**
+ * ops - select the operations.
+ * @tokens: first member
+ * @stack: second member
  *
- *
- *
- *
+ * Return: void.
  */
 void ops(char **tokens, stack_t **stack)
 {
@@ -63,16 +64,18 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	FILE *fp = fopen(argv[1], "r+");
+
 	if (fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-        char *token = NULL, **tokens = NULL, *line = NULL, **store, *delim = " \t\r\n\a";
-        stack_t *head = NULL; /* pointer to top of stack */
-        size_t len;
-        int idx = 3;
-        ssize_t chars;
+	char *token = NULL, **tokens = NULL, *line = NULL, **store;
+	char *delim = " \t\r\n\a";
+	stack_t *head = NULL; /* pointer to top of stack */
+	size_t len;
+	int idx = 3;
+	ssize_t chars;
 
 	while ((chars = getline(&line, &len, fp)) != -1)
 	{
@@ -107,7 +110,7 @@ int main(int argc, char *argv[])
 }
 
 /**
- * free_stack - free the stack
+ * frees - free the stack
  * @stack: ptr to stack
  * Return: Nothing
  */

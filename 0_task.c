@@ -3,7 +3,7 @@
 /**
  * push - pushes an element to the stack
  * @stack: the stack
- * @line_number: the line number of the push instruction
+ * @n: the line number of the push instruction
  */
 void push(stack_t **stack, unsigned int n)
 {
@@ -39,7 +39,7 @@ void push(stack_t **stack, unsigned int n)
 /**
  * pall - prints all the values on the stack, starting from the top
  * @stack: the stack
- * @line_number: the line number of the pall instruction (unused)
+ * @n: the line number of the pall instruction (unused)
  */
 void pall(stack_t **stack, unsigned int n)
 {
