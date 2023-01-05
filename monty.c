@@ -82,7 +82,10 @@ int main(int argc, char *argv[])
 		line_number++;
 		token = strtok(line, delim);
 		if (token == NULL)
+		{
+			free(token);
 			return (0);
+		}
 		store = malloc(sizeof(char **) * chars);
 		if (store == NULL)
 		{
@@ -103,6 +106,7 @@ int main(int argc, char *argv[])
 		{
 			ops(tokens, &head);
 			free(token);
+			free(store);
 		}
 	}
 	free(line), frees(&head), fclose(fp);

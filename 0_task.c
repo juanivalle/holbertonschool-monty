@@ -20,6 +20,7 @@ void push(stack_t **stack, unsigned int n)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		frees(stack);
+		free(new);
 		exit(EXIT_FAILURE);
 	}
 
@@ -34,6 +35,7 @@ void push(stack_t **stack, unsigned int n)
 		new->next = *stack;
 		*stack = new;
 	}
+
 }
 
 /**
